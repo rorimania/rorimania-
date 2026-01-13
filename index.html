@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>rorimania的编程学习笔记</title>
+    <link rel="stylesheet" href="styles.css" />
+        <!-- Markdown renderer and syntax highlighter -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <meta name="description" content="轻量静态博客框架示例" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script defer src="script.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">rorimania的编程学习笔记</h1>
+                        <button id="sidebarToggle" class="sidebar-toggle" aria-label="打开文章列表">▤</button>
+                        <!-- floating theme control will be appended in body -->
+            <p class="site-sub">一个简洁的在线笔记项目</p>
+        </div>
+    </header>
+
+    <main class="container layout">
+        <aside class="sidebar">
+            <div class="search">
+                <input id="searchInput" placeholder="搜索文章、标签或关键字..." />
+            </div>
+            <div class="view-controls">
+                <button id="viewToggle" class="view-btn" title="切换显示模式">列表</button>
+            </div>
+            <div id="techStack" class="tech-stack" style="display:none">
+                <h3>技术栈</h3>
+                <ul id="techList" class="tech-list"></ul>
+            </div>
+            <ul id="postList" class="post-list"></ul>
+        </aside>
+
+        <article id="postView" class="post-view">
+            <div id="postContent" class="post-content">
+                <h1 style="text-align:center;color:var(--accent);margin-bottom:32px">欢迎来到编程笔记</h1>
+                <div style="text-align:center;padding:40px 0">
+                    <p style="font-size:1.1rem;color:var(--text);margin-bottom:24px">选择左侧文章开始阅读</p>
+                    <p style="color:var(--muted);margin-bottom:40px">或访问主站获取更多内容</p>
+                    <a href="https://www.csqn.top" target="_blank" style="display:inline-block;padding:14px 28px;background:var(--accent);color:var(--card);text-decoration:none;border-radius:10px;font-weight:500;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 8px 20px rgba(0,0,0,0.12)" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 28px rgba(0,0,0,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)'">访问 csqn.top</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">© 2026 rorimania的博客 • 生成于本地</div>
+    </footer>
+
+    <div id="customCursor" class="custom-cursor"></div>
+    <div id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true"></div>
+        <!-- Floating theme control -->
+        <div id="floatingTheme" class="floating-theme" aria-hidden="false">
+            <button id="floatingToggle" class="floating-toggle" aria-label="主题切换">☼</button>
+            <div id="floatingPanel" class="floating-panel" aria-hidden="true">
+                <div class="theme-row">
+                    <button data-theme="day" class="theme-btn">日间</button>
+                    <button data-theme="dark" class="theme-btn">夜间</button>
+                </div>
+                <div class="theme-row">
+                    <label class="upload-btn">上传图片<input id="themeImageFile" type="file" accept="image/*" style="display:none" /></label>
+                </div>
+                <div class="theme-row small">主题会保存在本地。</div>
+            </div>
+        </div>
+        <!-- Top-right upload shortcut -->
+        <button id="topUploadBtn" class="top-upload" title="上传背景图片">🎨</button>
+</body>
+</html>

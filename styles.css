@@ -1,0 +1,227 @@
+:root{
+  /* 莫兰迪风格：柔和、低饱和度色系 */
+  --bg: #ece6df;     /* 整体背景 */
+  --card: #e3ddd7;   /* 卡片 / 面板 */
+  --text: #3b3b37;   /* 正文文本 */
+  --muted: #7f7b78;  /* 次要文本 */
+  --accent: #9aa3a6; /* 点缀色 */
+  --footer-bg: #d4c5b9; /* Footer 背景：莫兰迪棕色系 */
+  --overlay-panel: rgba(243, 239, 233, 0.92); /* 图片背景上的面板：半透明奶油色 */
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Helvetica,Arial;color:var(--text);background:linear-gradient(180deg,#f3efe9 0%, var(--bg) 100%)}
+
+/* Ensure vertical scrollbar gutter is always reserved to prevent layout shift */
+html{overflow-y:scroll}
+.container{max-width:1100px;margin:0 auto;padding:28px}
+.site-header{border-bottom:1px solid rgba(255,255,255,0.03);padding:22px 0}
+.site-title{margin:0;font-size:2rem}
+.site-sub{margin:6px 0 0;color:var(--muted);font-size:1.05rem}
+.layout{display:grid;grid-template-columns:380px 1fr;gap:28px;padding-top:28px}
+.sidebar{background:transparent}
+.search input{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);background:var(--card);color:var(--text);font-size:1rem}
+.search{position:relative}
+.search::before{content:'';position:absolute;left:0;top:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent);border-radius:12px;z-index:0;filter:blur(6px);opacity:0;pointer-events:none;transform:translate(0,0);transition:transform .14s ease,opacity .12s ease}
+.search input{position:relative;z-index:1}
+.search input::placeholder{color:var(--muted);text-shadow:0 1px 0 rgba(255,255,255,0.02)}
+.search:hover::before{opacity:0.25;transform:translate(10px,10px)}
+
+/* View control buttons */
+.view-controls{display:flex;gap:8px;margin:12px 0;padding:0 4px}
+.view-btn{flex:1;padding:10px;border:1px solid rgba(0,0,0,0.08);border-radius:8px;background:var(--card);color:var(--text);cursor:pointer;font-size:0.95rem;transition:all .15s ease}
+.view-btn:hover{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.12)}
+.view-btn.active{background:var(--accent);color:var(--card);border-color:var(--accent)}
+
+/* Tech Stack section */
+.tech-stack{margin:16px 0;padding:12px;border-radius:10px;background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.04)}
+.tech-stack h3{margin:0 0 12px;font-size:0.95rem;color:var(--text)}
+.tech-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.tech-item{padding:6px 12px;border-radius:6px;border:1px solid rgba(0,0,0,0.06);background:var(--card);cursor:pointer;font-size:0.9rem;color:var(--muted);transition:all .15s ease}
+.tech-item:hover,.tech-item.active{background:var(--accent);color:var(--card);border-color:var(--accent)}
+
+.post-list{list-style:none;padding:16px 0;margin:0}
+.post-item{position:relative;padding:20px;border-radius:12px;margin-bottom:18px;background:var(--card);cursor:pointer;border:1px solid rgba(0,0,0,0.04);z-index:1;transition:transform .18s cubic-bezier(.2,.9,.2,1),box-shadow .18s ease}
+.post-item::before{content:'';position:absolute;left:0;top:0;right:0;bottom:0;background:var(--bg);border-radius:12px;z-index:-1;box-shadow:10px 14px 30px rgba(0,0,0,0.06);opacity:1;transform:translate(0,0);transition:transform .18s cubic-bezier(.2,.9,.2,1),box-shadow .18s ease}
+.post-item h3{margin:0;font-size:1.15rem}
+.post-item p{margin:8px 0 0;color:var(--muted);font-size:0.95rem}
+.post-item:hover{transform:translateY(-5px);box-shadow:0 24px 40px rgba(0,0,0,0.10)}
+.post-item:hover::before{transform:translate(-3px,-3px);box-shadow:4px 10px 28px rgba(0,0,0,0.06)}
+/* Hide the read button but keep structure */
+.item-actions, .open-btn{display:none}
+.post-view{background:transparent;padding:14px}
+.post-content{background:linear-gradient(135deg, var(--card) 0%, rgba(227,221,215,0.5) 100%);padding:32px;border-radius:16px;border:1px solid rgba(0,0,0,0.08);box-shadow:0 12px 32px rgba(0,0,0,0.08)}
+.post-content h1,.post-content h2{color:var(--accent)}
+.post-content p{color:var(--text);line-height:1.6}
+.post-content pre{background:transparent;padding:18px;border-radius:10px;overflow:auto;color:var(--muted);border:0}
+.post-content pre code{display:block;padding:0;background:transparent;border-radius:6px}
+
+/* Code block enhanced styling */
+:root{
+  --code-bg: rgba(0,0,0,0.04);
+  --code-border: rgba(0,0,0,0.06);
+  --code-gutter: rgba(0,0,0,0.04);
+}
+.theme-dark{
+  --code-bg: #011627;
+  --code-border: rgba(255,255,255,0.06);
+  --code-gutter: rgba(255,255,255,0.03);
+}
+.post-content pre{
+  position:relative;
+  background:var(--code-bg);
+  border:1px solid var(--code-border);
+  padding:14px 14px 14px 62px;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+  margin:1.2rem 0;
+}
+.post-content pre code{padding:0;background:transparent;display:block;font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;font-size:0.95rem;line-height:1.65;white-space:pre;}
+
+/* left gutter for line numbers / language */
+.post-content pre::before{
+  content: attr(data-language);
+  position:absolute;left:12px;top:10px;
+  font-size:0.78rem;color:var(--muted);background:var(--code-gutter);padding:6px 8px;border-radius:6px;pointer-events:none
+}
+
+/* toolbar (copy) */
+.code-toolbar{position:absolute;right:10px;top:8px;display:flex;gap:8px}
+.code-toolbar button.copy-btn{background:rgba(255,255,255,0.06);border:0;color:var(--text);padding:6px 8px;border-radius:8px;cursor:pointer;font-size:0.85rem}
+.code-toolbar button.copy-btn.copied{background:rgba(120,200,120,0.14);color:var(--text)}
+
+/* small screens: reduce left gutter */
+@media(max-width:600px){.post-content pre{padding-left:42px}.post-content pre::before{left:8px;padding:4px 6px;font-size:0.72rem}}
+.site-footer{padding:22px 0;color:var(--muted);text-align:center;background:var(--footer-bg);border-top:1px solid rgba(0,0,0,0.06);margin-top:30px;border-radius:12px;margin:30px 0 0}
+
+/* Custom cursor */
+body{cursor:none}
+.custom-cursor{position:fixed;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--accent);mix-blend-mode:normal;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;box-shadow:0 0 20px rgba(154,163,166,0.18);transition:opacity .06s linear}
+
+/* Hide system cursor on most interactive elements so only the custom cursor is visible.
+  Keep native cursor for text inputs and textareas to allow text caret. */
+a,button,.post-item{cursor:none}
+input,textarea{cursor:text}
+
+/* Hide the custom cursor while hovering interactive elements (instant-ish via short opacity transition) */
+.custom-cursor.hidden{opacity:0}
+/* Floating theme control */
+.floating-theme {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.floating-toggle{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:var(--accent);
+  color:var(--card);
+  border:none;
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+  font-size:18px;
+  cursor:pointer;
+}
+.floating-panel{
+  background:var(--card);
+  color:var(--text);
+  padding:10px;
+  border-radius:12px;
+  box-shadow:0 12px 36px rgba(0,0,0,0.2);
+  transform-origin:100% 100%;
+  transition:opacity .18s ease, transform .18s ease;
+  opacity:0;
+  pointer-events:none;
+  margin-bottom:6px;
+}
+.floating-panel[aria-hidden="false"]{
+  opacity:1;
+  transform:translateY(-6px) scale(1);
+  pointer-events:auto;
+}
+.theme-row{display:flex;gap:8px;align-items:center}
+.theme-btn{padding:6px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:transparent;cursor:pointer}
+.upload-btn{padding:6px 12px;border-radius:8px;border:1px dashed rgba(0,0,0,0.08);cursor:pointer}
+.theme-row.small{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* Top-right upload button */
+.top-upload{
+  position:fixed;right:18px;top:18px;z-index:1250;padding:10px;border-radius:10px;border:0;background:var(--card);color:var(--text);box-shadow:0 8px 22px rgba(0,0,0,0.12);cursor:pointer;font-size:1.3rem;transition:transform .15s ease,box-shadow .15s ease}
+.top-upload:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,0.15)}
+.top-upload:active{transform:translateY(-1px)}
+
+/* Optional larger cursor state */
+.custom-cursor.grow{transform:translate(-50%,-50%) scale(1.6)}
+
+/* Theme control styles */
+.theme-control{display:inline-block;position:relative;margin-left:8px}
+.theme-toggle{background:transparent;border:0;font-size:18px;padding:6px 8px;color:var(--muted);cursor:pointer}
+.theme-panel{position:absolute;right:0;top:36px;background:var(--card);border:1px solid rgba(0,0,0,0.06);padding:10px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.08);min-width:240px;z-index:120;display:none}
+.theme-panel .theme-row{display:flex;gap:8px;margin-bottom:8px}
+.theme-panel .theme-row.small{font-size:0.8rem;color:var(--muted);margin-bottom:0}
+.theme-panel input{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:var(--bg);color:var(--text)}
+.theme-panel .theme-btn, .theme-panel button{padding:8px 10px;border-radius:8px;border:0;background:transparent;color:var(--text);cursor:pointer}
+.theme-panel.show{display:block}
+
+/* Dark theme overrides */
+.theme-dark{
+  /* Morandi-inspired darker palette: muted, low-saturation tones */
+  --bg: #262423;    /* deep neutral */
+  --card: #2e2c29;  /* slightly lighter panel */
+  --text: #e7e4e0;  /* soft off-white */
+  --muted: #b6b0ac; /* muted gray-beige */
+  --accent: #8f9a98; /* desaturated accent */
+  --footer-bg: #3d3935; /* Footer 背景：深棕色 */
+  --overlay-panel: rgba(38, 36, 35, 0.93); /* 暗色背景上的面板 */
+}
+
+/* Dark theme: adjust post-content for better depth */
+.theme-dark .post-content{
+  background:linear-gradient(135deg, var(--card) 0%, rgba(46,44,41,0.6) 100%);
+  border-color:rgba(255,255,255,0.06);
+  box-shadow:0 12px 32px rgba(0,0,0,0.35);
+}
+
+/* Image theme: body will have inline background-image set by JS; ensure content area legible */
+.theme-image{background-size:cover;background-position:center center;background-repeat:no-repeat}
+
+/* When using image theme, apply overlay panel color for readability */
+.theme-image .post-content, .theme-image .post-item{background:var(--overlay-panel)}
+
+/* Sidebar toggle button (mobile) */
+.sidebar-toggle{display:none;background:transparent;border:0;font-size:20px;padding:6px 10px;margin-left:12px;color:var(--muted);cursor:pointer}
+
+/* Overlay for off-canvas sidebar */
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.35);opacity:0;visibility:hidden;transition:opacity .18s ease;z-index:55}
+.sidebar-overlay.show{opacity:1;visibility:visible}
+
+/* Collapsible preview inside post item */
+.post-preview{max-height:none;overflow:visible;opacity:1;padding-top:10px;transition:max-height .18s ease,opacity .12s ease,padding .12s ease;color:var(--muted);font-size:0.95rem;line-height:1.5}
+.post-item.expanded .post-preview{max-height:260px;opacity:1;padding-top:10px}
+
+/* Prevent body scroll when sidebar open */
+body.no-scroll{overflow:hidden}
+
+@media(max-width:800px){
+  .layout{grid-template-columns:1fr;padding:12px}
+  .sidebar{order:2}
+  .post-view{order:1}
+
+  /* make sidebar off-canvas on small screens */
+  .sidebar{position:fixed;left:-110%;top:0;bottom:0;width:78%;max-width:420px;background:var(--bg);padding:22px 18px;box-shadow:0 20px 40px rgba(0,0,0,0.12);transition:left .22s ease;z-index:60;overflow:auto}
+  .sidebar.open{left:0}
+
+  /* show toggle in header */
+  .sidebar-toggle{display:inline-block}
+
+  /* post previews collapse by default to save space */
+  .post-item{padding:16px}
+  .post-item h3{font-size:1.05rem}
+
+  /* overlay visible when sidebar open (script will add .show) */
+  .sidebar-overlay{display:block}
+}
